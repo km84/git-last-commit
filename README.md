@@ -10,5 +10,5 @@ Instalacja
 
 Uruchomienie
 ------------
-php public/index.php get-last-commit [--service=] repozytorium branch,
+`php public/index.php get-last-commit [--service=] repozytorium branch`,
 np. `php public/index.php get-last-commit km84/insee-zadanie master` lub `php public/index.php get-last-commit --service=github km84/insee-zadanie master`
