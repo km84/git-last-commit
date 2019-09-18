@@ -37,7 +37,7 @@ class IndexController extends AbstractActionController {
             return sprintf("Application error: %s", $ex->getMessage());
         }
 
-        return sprintf('%s', $lastCommitHash, PHP_EOL);
+        return sprintf('%s', $lastCommitHash. PHP_EOL);
     }
 
 }
