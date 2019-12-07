@@ -30,7 +30,7 @@ class IndexController extends AbstractActionController {
             $serviceClient->setBranch($branchName);
             $lastCommitHash = $serviceClient->getLastCommit();
         } catch (\Application\Util\Git\Exception\ServiceNotFoundException $ex) {
-            return $ex->getMessage();
+            return sprintf('%s: %s', 'ServiceNotFoundException', $ex->getMessage());
         } catch (\InvalidArgumentException $ex) {
             return sprintf("Invalid argument error: %s", $ex->getMessage());
         } catch (\Exception $ex) {
