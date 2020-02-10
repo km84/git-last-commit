@@ -5,7 +5,7 @@ Aplikacja oparta o ZendSkeletonApplication (Zend Framework 2.4.13)
 
 Instalacja
 ------------
-    - pobrać kod z repozytorium Githuba https://github.com/km84/insee-zadanie
+    - pobrać kod z repozytorium Githuba https://github.com/km84/git-last-commit
     - w katalogu z projektem uruchomć polecenie `composer update`.
 
 Uruchomienie

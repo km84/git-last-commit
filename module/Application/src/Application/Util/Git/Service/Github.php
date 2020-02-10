@@ -3,45 +3,13 @@
 namespace Application\Util\Git\Service;
 
 use Application\Util\Git\GitServiceInterface;
+use Application\Util\Git\GitGetLastCommitInterface;
 use Application\Util\Git\Exception\BadArgumentsException;
 use Zend\Http\Request;
 use Zend\Http\Client;
 
-class Github implements GitServiceInterface {
-
-    private $repository;
-    private $branch;
-    private $apiUri;
-    private $httpClient;
-
-    public function __construct($httpClient) {
-        $this->httpClient = $httpClient;
-    }
-
-    public function setRepository(string $repository) {
-        $this->repository = $repository;
-    }
-
-    public function getRepository() {
-        return $this->repository;
-    }
-
-    public function setBranch(string $branch) {
-        $this->branch = $branch;
-    }
-
-    public function getApiUri() {
-        return $this->apiUri;
-    }
-
-    public function setApiUri(string $branch) {
-        $this->apiUri = $branch;
-    }
-
-    public function getBranch() {
-        return $this->branch;
-    }
-
+class Github extends AbstractService implements GitServiceInterface, GitGetLastCommitInterface {
+   
     public function getLastCommit(string $repository = null, string $branch = null) {
         if (!isset($repository)) {
             $repository = $this->getRepository();
@@ -78,6 +46,10 @@ class Github implements GitServiceInterface {
         list ($owner, $repo) = explode('/', $repository);
 
         return sprintf('%s/repos/%s/%s/commits/%s', $apiUri, $owner, $repo, $branch);
+    }
+    
+    public function getDefaultApiUri() {
+        return 'https://api.github.com';
     }
 
 }

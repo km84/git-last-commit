@@ -13,25 +13,12 @@ class ServiceFactory implements AbstractFactoryInterface {
         $service = ucfirst($serviceName);
         if (class_exists("Application\\Util\\Git\\Service\\{$service}")) {
             $className = "Application\\Util\\Git\\Service\\{$service}";
+            //@TODO jak pozbyć się tej zależności ?
             $client = new HttpClient();
             $gitService = new $className($client);
-            $gitService->setApiUri($this->getServiceDefaultApiUri($serviceName)); // default API
             return $gitService;
         }
         throw new Exception\ServiceNotFoundException(sprintf('Unknown service "%s"', $service));
-    }
-    
-    /**
-     * Return default service API URI.
-     * 
-     * @param string $serviceName
-     * @return boolean|string
-     */
-    private function getServiceDefaultApiUri($serviceName) {
-        switch ($serviceName) {
-            case 'github': return 'https://api.github.com';
-            default: return false;
-        }
     }
 
 }

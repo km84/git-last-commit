@@ -1,4 +1,4 @@
 <?php
-namespace Application\Util\Git\Exception;
+namespace Application\Util\Poker\Exception;
 
 class BadResponseDataException extends \Exception {}

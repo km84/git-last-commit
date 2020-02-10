@@ -6,19 +6,26 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Console\Request as ConsoleRequest;
 
-class IndexController extends AbstractActionController {
+class PokerController extends AbstractActionController {
 
     public function indexAction() {
         return new ViewModel();
     }
 
-    public function getLastCommitAction() {
+    /**
+     * Metoda zwraca informację o aktualnych kartach wszystkich graczy oraz wynikach.
+     * Wywołyuje API, które zwraca różne informacje o aktulnej grze.
+     * @return array
+     * @throws \RuntimeException
+     */
+    public function getPlaySummaryAction() {
         $request = $this->getRequest();
 
         if (!$request instanceof ConsoleRequest) {
             throw new \RuntimeException('Program może być uruchomiony tylko w trybie konsolowym.');
         }
 
+        
         $repositoryName = $request->getParam('repository');
         $branchName = $request->getParam('branch');
         $serviceName = !empty($request->getParam('service')) ? $request->getParam('service') : 'github';
